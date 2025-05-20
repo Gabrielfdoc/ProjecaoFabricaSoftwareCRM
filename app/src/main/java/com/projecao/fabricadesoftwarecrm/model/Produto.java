@@ -1,14 +1,12 @@
 package com.projecao.fabricadesoftwarecrm.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 @Entity
+@Data
 @EqualsAndHashCode
 @ToString
 public class Produto {
@@ -22,6 +20,14 @@ public class Produto {
 
     @Column
     private Float preco;
+
+    @Column(nullable = false)
+    private int quantidadeEstoque;
+
+    // Se você quiser mapear os itens que usam este produto (opcional)
+    // @OneToMany(mappedBy = "produto")
+    // private List<ItemPedido> itensPedido;
+
 
     public int getId() {
         return id;
@@ -45,5 +51,13 @@ public class Produto {
 
     public void setPreco(Float preco) {
         this.preco = preco;
+    }
+
+    public int getQuantidadeEstoque() {
+        return quantidadeEstoque;
+    }
+
+    public void setQuantidadeEstoque(int quantidadeEstoque) {
+        this.quantidadeEstoque = quantidadeEstoque;
     }
 }
